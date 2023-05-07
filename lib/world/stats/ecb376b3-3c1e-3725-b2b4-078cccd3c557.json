@@ -1,0 +1,16 @@
+{
+  "stat.walkOneCm": 4947,
+  "stat.leaveGame": 26,
+  "stat.damageTaken": 1025,
+  "stat.flyOneCm": 8033,
+  "stat.deaths": 4,
+  "stat.jump": 88,
+  "stat.playOneMinute": 207662,
+  "stat.fallOneCm": 5291,
+  "stat.entityKilledBy.Zombie": 4,
+  "stat.timeSinceDeath": 85420,
+  "stat.pickup.minecraft.dirt": 5,
+  "stat.useItem.minecraft.dirt": 5,
+  "stat.sprintOneCm": 4002,
+  "stat.mineBlock.minecraft.dirt": 5
+}
