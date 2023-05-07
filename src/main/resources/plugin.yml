@@ -1,0 +1,13 @@
+name: StarShop
+version: '${project.version}'
+main: starshop.starshop.StarShop
+authors: [ lxh ]
+
+commands:
+  ss:
+    usage: /ss
+
+permissions:
+  starShop.add:
+    description: 添加物价表
+    default: op
