@@ -26,7 +26,7 @@ public final class StarShop extends JavaPlugin {
     public void onEnable() {
         instance = this;
         LogFactory.setCurrentLogFactory(new JdkLogFactory());
-        LogUtil.info("测试日志输出1");
+        LogUtil.info("测试日志输出");
         LogUtil.info("插件运行哩");
         //注册监听事件
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
