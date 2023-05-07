@@ -57,7 +57,7 @@ public class HeadUtil {
         //String id,String signature,String value,String name
         ItemStack head = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
         NBTItem nbtItem = new NBTItem(head);
-        if (list == null || list.size() == 0) {
+        if (list == null || list.size() < 3) {
             return nbtItem.getItem();
         }
         NBTCompound skull = nbtItem.addCompound("SkullOwner");

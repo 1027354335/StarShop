@@ -1,4 +1,4 @@
-package starshop.starshop.Listeners.menu;
+package starshop.starshop.listeners.menu;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;

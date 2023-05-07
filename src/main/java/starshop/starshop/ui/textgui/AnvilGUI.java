@@ -37,7 +37,7 @@ public class AnvilGUI {
     /**
      * Called when the player clicks the {@link Slot#OUTPUT} slot
      */
-    private final ClickHandler clickHandler;
+    private  ClickHandler clickHandler;
 
     /**
      * The {@link NmsHelper} for this server

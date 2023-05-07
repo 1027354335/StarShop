@@ -2,6 +2,9 @@
 .idea/
 lib/logs/
 lib/crash-reports
+lib/world
+lib/world_nether
+lib/world_the_end
 *.iml
 *.ipr
 *.iws

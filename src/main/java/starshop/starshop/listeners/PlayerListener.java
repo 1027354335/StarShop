@@ -1,4 +1,4 @@
-package starshop.starshop.Listeners;
+package starshop.starshop.listeners;
 
 import com.mojang.authlib.GameProfile;
 import lombok.SneakyThrows;

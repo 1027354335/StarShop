@@ -1,4 +1,4 @@
-package starshop.starshop.Listeners.menu;
+package starshop.starshop.listeners.menu;
 
 import lombok.SneakyThrows;
 import org.apache.commons.lang.StringUtils;

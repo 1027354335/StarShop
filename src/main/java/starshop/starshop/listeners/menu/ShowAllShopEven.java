@@ -1,4 +1,4 @@
-package starshop.starshop.Listeners.menu;
+package starshop.starshop.listeners.menu;
 
 import cn.hutool.core.util.ObjectUtil;
 import de.tr7zw.nbtapi.NBTItem;
