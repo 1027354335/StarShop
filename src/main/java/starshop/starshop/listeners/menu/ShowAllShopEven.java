@@ -22,6 +22,7 @@ import starshop.starshop.utils.LogUtil;
 import starshop.starshop.utils.MsgUtil;
 
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author lxh
@@ -47,8 +48,9 @@ public class ShowAllShopEven extends MenuEvent {
         if (event.getRawSlot() == 2) {
             //点击 我的商店 界面
             player.closeInventory();
+            UUID uniqueId = player.getUniqueId();
             //检测如果玩家在某个队伍里面则跳转 SingleStore
-            Boolean is = teamPlayService.isTeamPlay(player.getUniqueId());
+            Boolean is = teamPlayService.isTeamPlay(uniqueId);
             if (is) {
                 Shop shop = shopService.getShopNameByPlayId(player.getUniqueId());
                 MsgUtil.sendWarningMessage(player, "这里应该是管理界面，先用购买界面凑合");

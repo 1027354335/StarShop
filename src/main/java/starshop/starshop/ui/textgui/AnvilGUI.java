@@ -15,8 +15,17 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
+import starshop.starshop.domain.Shop;
+import starshop.starshop.service.ShopService;
+import starshop.starshop.service.impl.ShopServiceImpl;
+import starshop.starshop.ui.menu.BuyInfoMenu;
 import starshop.starshop.ui.menu.CreateShopMenu;
+import starshop.starshop.ui.menu.SingleShopMenu;
 import starshop.starshop.ui.textgui.version.NmsHelper;
+
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * An anvil gui, used for gathering a user's input
@@ -61,10 +70,12 @@ public class AnvilGUI {
      */
     private boolean open = false;
 
+    private final ShopService shopService = new ShopServiceImpl();
+
 
     private String text;
 
-    private String info;
+    private Boolean info=false;
 
     /**
      * Create an AnvilGUI and open it for the player.
@@ -123,8 +134,7 @@ public class AnvilGUI {
         nms.setActiveContainerDefault(holder);
         nms.sendPacketCloseWindow(holder, containerId);
         HandlerList.unregisterAll(listener);
-        //输入名字和输入描述的在界面关闭后要打开编辑信息界面
-        holder.openInventory(CreateShopMenu.getInstance().getMenu());
+
     }
 
     public String getText() {
@@ -189,17 +199,30 @@ public class AnvilGUI {
                     text = clicked.getItemMeta().getDisplayName();
 
                     final String ret = clickHandler.onClick(clicker, clicked.hasItemMeta() ? clicked.getItemMeta().getDisplayName() : clicked.getType().toString());
-
-                    info = ret;
-
-                    if (ret != null) {
-                        final ItemMeta meta = clicked.getItemMeta();
-                        meta.setDisplayName(ret);
-                        clicked.setItemMeta(meta);
-                        inventory.setItem(Slot.OUTPUT, clicked);
-                        clicker.updateInventory();
-                    } else {
+                    info=true;
+//                    if (ret != null) {
+//                        final ItemMeta meta = clicked.getItemMeta();
+//                        meta.setDisplayName(ret);
+//                        clicked.setItemMeta(meta);
+//                        inventory.setItem(Slot.OUTPUT, clicked);
+//                        clicker.updateInventory();
+//                    } else {
+//                        closeInventory(false);
+//                    }
+                    if(Objects.equals(ret, "shopName")){
                         closeInventory(false);
+                        holder.openInventory(CreateShopMenu.getInstance().getMenu());
+                    }else if(Objects.equals(ret, "describe")){
+                        holder.openInventory(CreateShopMenu.getInstance().getMenu());
+                    }else if(Objects.equals(ret, "count")){
+                        Map<ItemStack, String> itemStackStringMap = BuyInfoMenu.buyItemCount.get(holder.getUniqueId());
+                        Set<ItemStack> itemStacks = itemStackStringMap.keySet();
+                        if(itemStacks.size()!=0){
+                            itemStacks.forEach(item -> {
+                                BuyInfoMenu buyInfoMenu=new BuyInfoMenu(item);
+                                holder.openInventory(buyInfoMenu.getMenu());
+                            });
+                        }
                     }
                 }
             }
@@ -208,8 +231,9 @@ public class AnvilGUI {
         @EventHandler
         public void onInventoryClose(InventoryCloseEvent e) {
             if (e.getInventory().equals(inventory)) {
-                if (open) {
+                if (open&&info) {
                     closeInventory(true);
+                    //输入名字和输入描述的在界面关闭后要打开编辑信息界面
                 }
                 e.getInventory().clear();
             }

@@ -49,19 +49,19 @@ public class CreateShopEven extends MenuEvent {
         if (event.getRawSlot() == 21) {
             new AnvilGUI(StarShop.instance, player, "输入商店名", (player1, reply) -> {
                 shop.setShopName(reply);
-                return null;
+                return "shopName";
             });
         } else if (event.getRawSlot() == 23) {
             //商店队伍的描述
             new AnvilGUI(StarShop.instance, player, "输入商店队伍简介", (player1, reply) -> {
                 shop.setDescribe(reply);
-                return null;
+                return "describe";
             });
         } else if (event.getRawSlot() == 49) {
             //判断当前商店名/描述是否为空
             if (StringUtils.isEmpty(shop.getShopName()) || StringUtils.isEmpty(shop.getDescribe())) {
                 MsgUtil.sendErrorMessage(player, "没有填写商店名以及商店描述");
-                return;
+                return ;
             }
             //判断是否有相同的商店名
             Boolean isHaveSample = shopService.isSameShopName(shop.getShopName());

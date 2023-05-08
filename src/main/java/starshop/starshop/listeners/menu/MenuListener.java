@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
+import starshop.starshop.common.constants.Constant;
 import starshop.starshop.common.constants.MenuTypeTitle;
 import starshop.starshop.ui.menu.CreateOrJoinMenu;
 
@@ -28,6 +29,7 @@ public class MenuListener implements Listener {
         MenuEvent menuEvent = null;
         Player player = (Player) e.getWhoClicked();
         Inventory inventory = e.getInventory();
+
         if (ObjectUtil.isEmpty(inventory) || StrUtil.isEmpty(inventory.getTitle()) || ObjectUtil.isEmpty(e.getCurrentItem())) {
             return;
         }
@@ -63,10 +65,9 @@ public class MenuListener implements Listener {
 
     @EventHandler
     public void onMenuDrag(InventoryDragEvent e) {
-        Inventory menu = CreateOrJoinMenu.getInstance().getMenu();
         //检测玩家拖动的物品是否在规定范围内
         for (int slot : e.getRawSlots()) {
-            if (slot < menu.getSize()) {
+            if (slot < Constant.MENU_SIZE) {
                 e.setCancelled(true);
                 return;
             }
